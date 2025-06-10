@@ -7,8 +7,6 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
-  Deal,
-  Product,
   DealStats,
   LatestDealRaw,
   ActiveUser,

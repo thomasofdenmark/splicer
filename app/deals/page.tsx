@@ -1,12 +1,13 @@
+import { Metadata } from 'next';
 import { Suspense } from 'react';
+
 import { searchDeals } from '@/app/lib/deal-data';
 import { fetchCategories } from '@/app/lib/product-data';
+import DealsFilters from '@/app/ui/deals/deals-filters';
 import DealsGrid from '@/app/ui/deals/deals-grid';
 import DealsGridSkeleton from '@/app/ui/deals/deals-grid-skeleton';
 import DealsSearch from '@/app/ui/deals/deals-search';
-import DealsFilters from '@/app/ui/deals/deals-filters';
 import DealsSortSelect from '@/app/ui/deals/deals-sort-select';
-import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Group Deals | Group Buying Platform',

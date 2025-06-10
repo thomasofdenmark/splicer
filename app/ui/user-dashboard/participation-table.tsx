@@ -1,13 +1,14 @@
-import Image from 'next/image';
-import Link from 'next/link';
 import { 
   CalendarDaysIcon, 
   UsersIcon,
   ChartBarIcon,
   EyeIcon
 } from '@heroicons/react/24/outline';
-import { formatCurrency, formatDateToLocal } from '@/app/lib/utils';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import type { UserDealParticipation } from '@/app/lib/user-data';
+import { formatCurrency, formatDateToLocal } from '@/app/lib/utils';
 
 interface ParticipationTableProps {
   participations: UserDealParticipation[];
@@ -140,7 +141,7 @@ export default function ParticipationTable({ participations }: ParticipationTabl
                         </div>
                         {participation.notes && (
                           <div className="text-xs text-gray-400 mt-1" title={participation.notes}>
-                            "{participation.notes.substring(0, 30)}{participation.notes.length > 30 ? '...' : ''}"
+                            &quot;{participation.notes.substring(0, 30)}{participation.notes.length > 30 ? '...' : ''}&quot;
                           </div>
                         )}
                       </div>

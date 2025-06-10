@@ -1,10 +1,5 @@
 'use client';
 
-import { useState } from 'react';
-import Image from 'next/image';
-import Link from 'next/link';
-import { useRouter, useSearchParams, usePathname } from 'next/navigation';
-
 import { 
   EyeIcon, 
   PencilIcon, 
@@ -13,6 +8,10 @@ import {
   ChevronLeftIcon,
   ChevronRightIcon,
 } from '@heroicons/react/24/outline';
+import Image from 'next/image';
+import Link from 'next/link';
+import { useRouter, useSearchParams, usePathname } from 'next/navigation';
+import { useState } from 'react';
 
 import { GroupDealWithProduct } from '@/app/lib/group-buying-types';
 import { formatCurrency, formatDateToLocal } from '@/app/lib/utils';

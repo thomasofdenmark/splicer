@@ -401,7 +401,7 @@ export async function migration009_add_user_roles() {
     await sql`CREATE INDEX IF NOT EXISTS idx_users_role ON users(role);`;
 
     // Create a default admin user (you can change these credentials)
-    const bcrypt = require('bcrypt');
+    const bcrypt = await import('bcrypt');
     const hashedPassword = await bcrypt.hash('admin123!', 12);
 
     await sql`
@@ -414,7 +414,7 @@ export async function migration009_add_user_roles() {
   });
 
   console.log(`Migration ${migrationName} completed!`);
-  console.log(`✅ Default admin user created: admin@example.com / admin123!`);
+  console.log('✅ Default admin user created: admin@example.com / admin123!');
 }
 
 // Main migration runner

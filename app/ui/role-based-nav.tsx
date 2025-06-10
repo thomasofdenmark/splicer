@@ -1,7 +1,5 @@
 'use client';
 
-import Link from 'next/link';
-import { useSession } from 'next-auth/react';
 import { 
   HomeIcon, 
   ShoppingBagIcon, 
@@ -11,11 +9,13 @@ import {
   UserGroupIcon,
   UserCircleIcon
 } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { useSession } from 'next-auth/react';
 
 export default function RoleBasedNav() {
   const { data: session } = useSession();
   
-  if (!session?.user) return null;
+  if (!session?.user) {return null;}
 
   const isAdmin = session.user.role === 'admin';
 

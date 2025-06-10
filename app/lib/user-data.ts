@@ -1,5 +1,5 @@
-import postgres from 'postgres';
 import { unstable_noStore as noStore } from 'next/cache';
+import postgres from 'postgres';
 
 const sql = postgres(process.env.POSTGRES_URL!, { ssl: 'require' });
 
@@ -31,6 +31,23 @@ export interface UserDealStats {
   cancelled_deals: number;
   total_savings: number;
   total_quantity: number;
+}
+
+export interface UserCreatedDeal {
+  id: string;
+  title: string;
+  status: string;
+  product_name: string;
+  product_image_url: string;
+  current_participants: number;
+  target_participants: number;
+  current_quantity: number;
+  deal_price: number;
+  original_price: number;
+  discount_percentage: number;
+  start_date: string;
+  end_date: string;
+  progress_percentage: number;
 }
 
 export async function fetchUserDealParticipations(userId: string): Promise<UserDealParticipation[]> {
@@ -110,11 +127,11 @@ export async function fetchUserDealStats(userId: string): Promise<UserDealStats>
   }
 }
 
-export async function fetchUserCreatedDeals(userId: string) {
+export async function fetchUserCreatedDeals(userId: string): Promise<UserCreatedDeal[]> {
   noStore();
   
   try {
-    const deals = await sql`
+    const deals = await sql<UserCreatedDeal[]>`
       SELECT 
         gd.id,
         gd.title,

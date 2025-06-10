@@ -1,7 +1,8 @@
-import { Metadata } from 'next';
-import { Suspense } from 'react';
-import Link from 'next/link';
 import { PlusIcon } from '@heroicons/react/24/outline';
+import { Metadata } from 'next';
+import Link from 'next/link';
+import { Suspense } from 'react';
+
 import { fetchAllDealsForAdmin } from '@/app/lib/deal-data';
 import { fetchCategories } from '@/app/lib/product-data';
 import AdminDealsFilters from '@/app/ui/deals/admin-deals-filters';

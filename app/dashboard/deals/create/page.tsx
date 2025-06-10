@@ -1,6 +1,6 @@
-import Form from '@/app/ui/deals/create-form';
-import Breadcrumbs from '@/app/ui/breadcrumbs';
 import { fetchAllProducts } from '@/app/lib/product-data';
+import Breadcrumbs from '@/app/ui/breadcrumbs';
+import Form from '@/app/ui/deals/create-form';
 
 export default async function Page() {
   const products = await fetchAllProducts();

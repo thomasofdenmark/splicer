@@ -1,9 +1,9 @@
 import '@/app/ui/global.css';
-import { SessionProvider } from 'next-auth/react';
 import { Metadata } from 'next';
-import TopNavigation from '@/app/ui/top-navigation';
+import { SessionProvider } from 'next-auth/react';
 
 import { body } from '@/app/ui/fonts';
+import TopNavigation from '@/app/ui/top-navigation';
 
 export const metadata: Metadata = {
   title: {

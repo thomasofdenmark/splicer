@@ -1,9 +1,9 @@
 import { Suspense } from 'react';
 
+import ActiveUsers from '@/app/ui/dashboard/active-users';
 import CardWrapper from '@/app/ui/dashboard/cards';
 import LatestDeals from '@/app/ui/dashboard/latest-invoices';
 import DealsChart from '@/app/ui/dashboard/revenue-chart';
-import ActiveUsers from '@/app/ui/dashboard/active-users';
 import { display } from '@/app/ui/fonts';
 import {
   DealsChartSkeleton,

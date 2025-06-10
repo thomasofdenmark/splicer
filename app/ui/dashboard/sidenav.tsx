@@ -1,9 +1,6 @@
 import { PowerIcon } from '@heroicons/react/24/outline';
-import Link from 'next/link';
 
 import NavLinks from '@/app/ui/dashboard/nav-links';
-import SplicerLogo from '@/app/ui/splicer-logo';
-import UserRoleBadge from '@/app/ui/user-role-badge';
 import { signOut } from '@/auth';
 
 export default function SideNav() {

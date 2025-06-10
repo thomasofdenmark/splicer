@@ -1,10 +1,11 @@
+import { Metadata } from 'next';
 import { Suspense } from 'react';
+
 import { fetchFilteredProducts, fetchCategories } from '@/app/lib/product-data';
-import ProductGrid from '@/app/ui/catalog/product-grid';
-import ProductGridSkeleton from '@/app/ui/catalog/product-grid-skeleton';
 import CatalogFilters from '@/app/ui/catalog/catalog-filters';
 import CatalogSearch from '@/app/ui/catalog/catalog-search';
-import { Metadata } from 'next';
+import ProductGrid from '@/app/ui/catalog/product-grid';
+import ProductGridSkeleton from '@/app/ui/catalog/product-grid-skeleton';
 
 export const metadata: Metadata = {
   title: 'Products | Group Buying Platform',

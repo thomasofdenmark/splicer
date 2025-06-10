@@ -10,7 +10,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const pathname = usePathname();
 
   const handleSearch = useDebouncedCallback((term: string) => {
-    console.log(`Searching... ${term}`);
+    // Debug search functionality - could be console.warn if needed for debugging
 
     const params = new URLSearchParams(searchParams);
 

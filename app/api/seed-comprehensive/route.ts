@@ -384,6 +384,7 @@ export async function GET() {
     
     // Get admin user
     const users = await sql`SELECT id FROM users WHERE role = 'admin' LIMIT 1`;
+    let userId;
     if (users.length === 0) {
       // Create admin user if doesn't exist
       const adminUser = await sql`
@@ -391,9 +392,9 @@ export async function GET() {
         VALUES ('Admin User', 'admin@example.com', 'hashed_password', 'admin')
         RETURNING id;
       `;
-      var userId = adminUser[0].id;
+      userId = adminUser[0].id;
     } else {
-      var userId = users[0].id;
+      userId = users[0].id;
     }
     
     console.log('👤 Using admin user:', userId);

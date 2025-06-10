@@ -1,10 +1,12 @@
-import { notFound } from 'next/navigation';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { notFound } from 'next/navigation';
+
 import { fetchProductById } from '@/app/lib/product-data';
 import { formatCurrency } from '@/app/lib/utils';
-import { Metadata } from 'next';
+
 
 export async function generateMetadata({
   params,

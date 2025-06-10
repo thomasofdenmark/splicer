@@ -1,14 +1,14 @@
 'use client';
 
-import { useSearchParams, useRouter } from 'next/navigation';
-import { useActionState, useState, useEffect } from 'react';
-import { signIn, useSession } from 'next-auth/react';
 import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
 } from '@heroicons/react/24/outline';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { signIn, useSession } from 'next-auth/react';
+import { useActionState, useState, useEffect } from 'react';
 
 import { authenticate } from '@/app/lib/actions';
 import { Button } from '@/app/ui/button';

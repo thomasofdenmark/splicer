@@ -1,12 +1,12 @@
 'use client';
 
-import { useSession } from 'next-auth/react';
 import { ShieldCheckIcon, UserIcon } from '@heroicons/react/24/outline';
+import { useSession } from 'next-auth/react';
 
 export default function UserRoleBadge() {
   const { data: session } = useSession();
   
-  if (!session?.user) return null;
+  if (!session?.user) {return null;}
 
   const isAdmin = session.user.role === 'admin';
 

@@ -1,12 +1,13 @@
-import Link from 'next/link';
-import Image from 'next/image';
 import { 
   ClockIcon, 
   ArrowRightIcon,
   ExclamationTriangleIcon
 } from '@heroicons/react/24/outline';
-import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
+import Image from 'next/image';
+import Link from 'next/link';
+
 import type { UserDealParticipation } from '@/app/lib/user-data';
+import { formatDateToLocal, formatCurrency } from '@/app/lib/utils';
 
 interface RecentActivityProps {
   participations: UserDealParticipation[];

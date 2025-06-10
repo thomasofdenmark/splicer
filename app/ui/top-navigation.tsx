@@ -1,8 +1,5 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
-import Link from 'next/link';
-import { useSession, signOut } from 'next-auth/react';
 import { 
   UserCircleIcon, 
   ChevronDownIcon,
@@ -13,6 +10,10 @@ import {
   ShieldCheckIcon,
   UserIcon
 } from '@heroicons/react/24/outline';
+import Link from 'next/link';
+import { useSession, signOut } from 'next-auth/react';
+import { useState, useRef, useEffect } from 'react';
+
 import SplicerLogo from '@/app/ui/splicer-logo';
 
 export default function TopNavigation() {

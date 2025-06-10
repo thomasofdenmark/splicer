@@ -1,5 +1,5 @@
-import Link from 'next/link';
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline';
+import Link from 'next/link';
 
 export default function UnauthorizedPage() {
   return (
@@ -11,7 +11,7 @@ export default function UnauthorizedPage() {
             Access Denied
           </h2>
           <p className="mt-2 text-sm text-gray-600">
-            You don't have permission to access this area. Admin privileges are required.
+            You don&apos;t have permission to access this area. Admin privileges are required.
           </p>
         </div>
         

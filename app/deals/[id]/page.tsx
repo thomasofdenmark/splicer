@@ -1,15 +1,16 @@
-import { notFound } from 'next/navigation';
+import { ArrowLeftIcon } from '@heroicons/react/24/outline';
+import { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { ArrowLeftIcon, ClockIcon, UserGroupIcon } from '@heroicons/react/24/outline';
+import { notFound } from 'next/navigation';
+
 import { fetchDealById, fetchDealParticipants, fetchDealStats, fetchUserParticipation } from '@/app/lib/deal-data';
 import { formatCurrency } from '@/app/lib/utils';
-import { auth } from '@/auth';
-import { Metadata } from 'next';
-import JoinDealForm from '@/app/ui/deals/join-deal-form';
+import DealActions from '@/app/ui/deals/deal-actions';
 import DealParticipants from '@/app/ui/deals/deal-participants';
 import DealProgress from '@/app/ui/deals/deal-progress';
-import DealActions from '@/app/ui/deals/deal-actions';
+import JoinDealForm from '@/app/ui/deals/join-deal-form';
+import { auth } from '@/auth';
 
 export async function generateMetadata({
   params,
@@ -157,7 +158,7 @@ export default async function DealPage({
                         </div>
                         <div className="ml-3">
                           <h3 className="text-sm font-medium text-green-800">
-                            You're part of this deal!
+                            You&apos;re part of this deal!
                           </h3>
                           <div className="mt-2 text-sm text-green-700">
                             <p>You joined this deal with {userParticipation.quantity} item(s).</p>

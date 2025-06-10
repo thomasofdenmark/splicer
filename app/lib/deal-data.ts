@@ -1,7 +1,7 @@
 import { unstable_noStore as noStore } from 'next/cache';
 import postgres from 'postgres';
+
 import type { 
-  GroupDeal, 
   GroupDealWithProduct,
   DealParticipant,
   DealParticipantWithUser,
@@ -333,7 +333,7 @@ export async function searchDeals(
       whereConditions.push(`gd.status = $${paramCount}`);
       values.push(status);
     } else {
-      whereConditions.push(`gd.status IN ('pending', 'active')`);
+      whereConditions.push('gd.status IN (\'pending\', \'active\')');
     }
     
     const whereClause = whereConditions.join(' AND ');

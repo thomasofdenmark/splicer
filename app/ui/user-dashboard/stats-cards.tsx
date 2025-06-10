@@ -6,8 +6,9 @@ import {
   CurrencyDollarIcon,
   CubeIcon
 } from '@heroicons/react/24/outline';
-import { formatCurrency } from '@/app/lib/utils';
+
 import type { UserDealStats } from '@/app/lib/user-data';
+import { formatCurrency } from '@/app/lib/utils';
 
 interface StatsCardsProps {
   stats: UserDealStats;

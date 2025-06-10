@@ -1,13 +1,9 @@
-import { UserGroupIcon } from '@heroicons/react/24/outline';
 import Link from 'next/link';
 
 import { display } from '@/app/ui/fonts';
-import { auth } from '@/auth';
 
 export default async function Page() {
-  const session = await auth();
-  const isLoggedIn = !!session?.user;
-  const isAdmin = session?.user?.role === 'admin';
+  // Session auth removed - used in commented role-based buttons section
 
   return (
     <main className="flex min-h-screen flex-col p-6">

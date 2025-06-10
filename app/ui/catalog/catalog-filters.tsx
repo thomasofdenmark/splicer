@@ -1,8 +1,9 @@
 'use client';
 
 import { useSearchParams, usePathname, useRouter } from 'next/navigation';
-import { Category } from '@/app/lib/group-buying-types';
 import { useState } from 'react';
+
+import { Category } from '@/app/lib/group-buying-types';
 
 interface CatalogFiltersProps {
   categories: Category[];

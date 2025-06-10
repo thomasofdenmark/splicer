@@ -1,7 +1,8 @@
 'use client';
 
-import { useActionState, useState, useEffect } from 'react';
+import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { useActionState, useState, useEffect } from 'react';
 
 import { createGroupDeal } from '@/app/lib/deal-actions';
 import { ProductWithCategory } from '@/app/lib/group-buying-types';
@@ -244,12 +245,12 @@ export default function Form({ products }: { products: ProductWithCategory[] }) 
       </div>
       
       <div className="mt-6 flex justify-end gap-4 md:w-1/2">
-        <a
+        <Link
           href="/deals"
           className="flex h-10 items-center rounded-lg bg-gray-100 px-4 text-sm font-medium text-gray-600 transition-colors hover:bg-gray-200"
         >
           Cancel
-        </a>
+        </Link>
         <Button type="submit">Create Deal</Button>
       </div>
     </form>

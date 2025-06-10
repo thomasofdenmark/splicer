@@ -1,17 +1,12 @@
-import { Suspense } from 'react';
-import { redirect } from 'next/navigation';
-import { auth } from '@/auth';
-import { fetchUserDealParticipations, fetchUserDealStats, fetchUserCreatedDeals } from '@/app/lib/user-data';
-import StatsCards from '@/app/ui/user-dashboard/stats-cards';
-import ParticipationTable from '@/app/ui/user-dashboard/participation-table';
+// Unused imports removed - icons are in commented Quick Actions section
 import Link from 'next/link';
-import { 
-  PlusIcon, 
-  ChartBarIcon,
-  UserCircleIcon,
-  Cog6ToothIcon
-} from '@heroicons/react/24/outline';
-import { display } from '@/app/ui/fonts';
+import { redirect } from 'next/navigation';
+import { Suspense } from 'react';
+
+import { fetchUserDealParticipations, fetchUserDealStats, fetchUserCreatedDeals, UserCreatedDeal } from '@/app/lib/user-data';
+import ParticipationTable from '@/app/ui/user-dashboard/participation-table';
+import StatsCards from '@/app/ui/user-dashboard/stats-cards';
+import { auth } from '@/auth';
 
 export default async function UserDashboard() {
   const session = await auth();
@@ -64,7 +59,7 @@ export default async function UserDashboard() {
               </div>
               
               <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-                {createdDeals.map((deal: any) => (
+                {createdDeals.map((deal: UserCreatedDeal) => (
                   <div key={deal.id} className="rounded-lg bg-white p-6 shadow-sm ring-1 ring-gray-200">
                     <div className="flex items-center justify-between mb-4">
                       <h3 className="font-medium text-gray-900">{deal.title}</h3>

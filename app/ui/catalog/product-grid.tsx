@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+
 import { Product } from '@/app/lib/group-buying-types';
 import { formatCurrency } from '@/app/lib/utils';
 

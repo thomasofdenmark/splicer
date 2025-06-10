@@ -1,5 +1,6 @@
-import Image from 'next/image';
 import { UserIcon } from '@heroicons/react/24/outline';
+import Image from 'next/image';
+
 import type { DealParticipantWithUser } from '@/app/lib/group-buying-types';
 
 interface DealParticipantsProps {
@@ -25,7 +26,7 @@ export default function DealParticipants({ participants, dealTitle }: DealPartic
           Participants ({participants.length})
         </h3>
         <p className="mt-1 text-sm text-gray-500">
-          People who have joined "{dealTitle}"
+          People who have joined &quot;{dealTitle}&quot;
         </p>
       </div>
       
@@ -57,7 +58,7 @@ export default function DealParticipants({ participants, dealTitle }: DealPartic
                 </div>
                 {participant.notes && (
                   <div className="text-xs text-gray-400 mt-1 italic">
-                    "{participant.notes}"
+                    &quot;{participant.notes}&quot;
                   </div>
                 )}
               </div>
