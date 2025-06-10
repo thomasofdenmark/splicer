@@ -1,37 +1,34 @@
 import {
-  BanknotesIcon,
-  ClockIcon,
+  BriefcaseIcon,
+  CubeIcon,
   UserGroupIcon,
-  InboxIcon,
+  CheckCircleIcon,
 } from '@heroicons/react/24/outline';
-import { lusitana } from '@/app/ui/fonts';
-import { fetchCardData } from '@/app/lib/data';
+
+import { fetchDashboardCardData } from '@/app/lib/data';
+import { display } from '@/app/ui/fonts';
 
 const iconMap = {
-  collected: BanknotesIcon,
-  customers: UserGroupIcon,
-  pending: ClockIcon,
-  invoices: InboxIcon,
+  deals: BriefcaseIcon,
+  products: CubeIcon,
+  users: UserGroupIcon,
+  active: CheckCircleIcon,
 };
 
 export default async function CardWrapper() {
   const {
-    numberOfInvoices,
-    numberOfCustomers,
-    totalPaidInvoices,
-    totalPendingInvoices,
-  } = await fetchCardData();
+    totalDeals,
+    totalProducts,
+    totalUsers,
+    activeDeals,
+  } = await fetchDashboardCardData();
 
   return (
     <>
-      <Card title="Collected" value={totalPaidInvoices} type="collected" />
-      <Card title="Pending" value={totalPendingInvoices} type="pending" />
-      <Card title="Total Invoices" value={numberOfInvoices} type="invoices" />
-      <Card
-        title="Total Customers"
-        value={numberOfCustomers}
-        type="customers"
-      />
+      <Card title="Total Deals" value={totalDeals} type="deals" />
+      <Card title="Products" value={totalProducts} type="products" />
+      <Card title="Total Users" value={totalUsers} type="users" />
+      <Card title="Active Deals" value={activeDeals} type="active" />
     </>
   );
 }
@@ -43,7 +40,7 @@ export function Card({
 }: {
   title: string;
   value: number | string;
-  type: 'invoices' | 'customers' | 'pending' | 'collected';
+  type: 'deals' | 'products' | 'users' | 'active';
 }) {
   const Icon = iconMap[type];
 
@@ -54,8 +51,7 @@ export function Card({
         <h3 className="ml-2 text-sm font-medium">{title}</h3>
       </div>
       <p
-        className={`${lusitana.className}
-          truncate rounded-xl bg-white px-4 py-8 text-center text-2xl`}
+        className={`${display.className} truncate rounded-xl bg-white px-4 py-8 text-center text-2xl`}
       >
         {value}
       </p>

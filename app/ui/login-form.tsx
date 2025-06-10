@@ -1,29 +1,84 @@
 'use client';
 
-import { lusitana } from '@/app/ui/fonts';
+import { useSearchParams, useRouter } from 'next/navigation';
+import { useActionState, useState, useEffect } from 'react';
+import { signIn, useSession } from 'next-auth/react';
+import { ArrowRightIcon } from '@heroicons/react/20/solid';
 import {
   AtSymbolIcon,
   KeyIcon,
   ExclamationCircleIcon,
 } from '@heroicons/react/24/outline';
-import { ArrowRightIcon } from '@heroicons/react/20/solid';
-import { Button } from '@/app/ui/button';
-import { useActionState } from 'react';
+
 import { authenticate } from '@/app/lib/actions';
-import { useSearchParams } from 'next/navigation';
+import { Button } from '@/app/ui/button';
+import { display } from '@/app/ui/fonts';
 
 export default function LoginForm() {
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get('callbackUrl') || '/dashboard';
-  const [errorMessage, formAction, isPending] = useActionState(
+  const callbackUrl = searchParams.get('callbackUrl');
+  const router = useRouter();
+  const { data: session, status } = useSession();
+  const [errorMessage] = useActionState(
     authenticate,
     undefined,
   );
+  const [clientError, setClientError] = useState<string>('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Handle redirect after successful login
+  useEffect(() => {
+    if (status === 'authenticated' && session?.user && isSubmitting) {
+      if (callbackUrl) {
+        router.push(callbackUrl);
+        return;
+      }
+      
+      // Role-based redirect when no callback URL is provided
+      if (session.user.role === 'admin') {
+        router.push('/dashboard');
+      } else {
+        router.push('/my-dashboard');
+      }
+    }
+  }, [session, status, callbackUrl, router, isSubmitting]);
+
+  const handleClientSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setClientError('');
+    
+    const formData = new FormData(e.currentTarget);
+    const email = formData.get('email') as string;
+    const password = formData.get('password') as string;
+    
+    try {
+      const result = await signIn('credentials', {
+        email,
+        password,
+        redirect: false,
+      });
+      
+      if (result?.error) {
+        setClientError('Invalid credentials.');
+        setIsSubmitting(false);
+        return;
+      }
+      
+      // Success - the useEffect will handle the redirect
+    } catch (_error) {
+      setClientError('Something went wrong.');
+      setIsSubmitting(false);
+    }
+  };
 
   return (
-    <form action={formAction} className="space-y-3">
+    <form 
+      onSubmit={handleClientSubmit}
+      className="space-y-3"
+    >
       <div className="flex-1 rounded-lg bg-gray-50 px-6 pb-4 pt-8">
-        <h1 className={`${lusitana.className} mb-3 text-2xl`}>
+        <h1 className={`${display.className} mb-3 text-2xl`}>
           Please log in to continue.
         </h1>
         <div className="w-full">
@@ -67,8 +122,7 @@ export default function LoginForm() {
             </div>
           </div>
         </div>
-        <input type="hidden" name="redirectTo" value={callbackUrl} />
-        <Button className="mt-4 w-full" aria-disabled={isPending}>
+        <Button className="mt-4 w-full" aria-disabled={isSubmitting}>
           Log in <ArrowRightIcon className="ml-auto h-5 w-5 text-gray-50" />
         </Button>
         <div
@@ -76,10 +130,10 @@ export default function LoginForm() {
           aria-live="polite"
           aria-atomic="true"
         >
-          {errorMessage && (
+          {(errorMessage || clientError) && (
             <>
               <ExclamationCircleIcon className="h-5 w-5 text-red-500" />
-              <p className="text-sm text-red-500">{errorMessage}</p>
+              <p className="text-sm text-red-500">{errorMessage || clientError}</p>
             </>
           )}
         </div>

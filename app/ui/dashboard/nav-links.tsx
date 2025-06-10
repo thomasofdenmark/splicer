@@ -3,22 +3,24 @@
 import {
   UserGroupIcon,
   HomeIcon,
-  DocumentDuplicateIcon,
+  ShoppingBagIcon,
+  CubeIcon,
+  ChartBarIcon,
+  CogIcon,
 } from '@heroicons/react/24/outline';
+import clsx from 'clsx';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import clsx from 'clsx';
 
 // Map of links to display in the side navigation.
-// Depending on the size of the application, this would be stored in a database.
+// These are admin-focused links for managing the platform
 const links = [
-  { name: 'Home', href: '/dashboard', icon: HomeIcon },
-  {
-    name: 'Invoices',
-    href: '/dashboard/invoices',
-    icon: DocumentDuplicateIcon,
-  },
-  { name: 'Customers', href: '/dashboard/customers', icon: UserGroupIcon },
+  { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
+  { name: 'Deals', href: '/dashboard/deals', icon: ShoppingBagIcon },
+  { name: 'Products', href: '/dashboard/products', icon: CubeIcon },
+  { name: 'Analytics', href: '/dashboard/analytics', icon: ChartBarIcon },
+  { name: 'Users', href: '/dashboard/users', icon: UserGroupIcon },
+  { name: 'Settings', href: '/dashboard/settings', icon: CogIcon },
 ];
 
 export default function NavLinks() {
@@ -33,9 +35,9 @@ export default function NavLinks() {
             key={link.name}
             href={link.href}
             className={clsx(
-              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-blue-600 md:flex-none md:justify-start md:p-2 md:px-3',
+              'flex h-[48px] grow items-center justify-center gap-2 rounded-md bg-gray-50 p-3 text-sm font-medium hover:bg-sky-100 hover:text-emerald-600 md:flex-none md:justify-start md:p-2 md:px-3',
               {
-                'bg-sky-100 text-blue-600': pathname === link.href,
+                'bg-sky-100 text-emerald-600': pathname === link.href,
               },
             )}
           >

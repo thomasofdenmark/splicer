@@ -7,6 +7,7 @@ export type User = {
   name: string;
   email: string;
   password: string;
+  role: 'user' | 'admin';
 };
 
 export type Customer = {
@@ -85,4 +86,50 @@ export type InvoiceForm = {
   customer_id: string;
   amount: number;
   status: 'pending' | 'paid';
+};
+
+// New types for the refactored dashboard
+export type Deal = {
+  id: string;
+  title: string;
+  company: string;
+  value: number;
+  status: 'open' | 'closed' | 'pending';
+  created_date: string;
+  customer_id: string;
+};
+
+export type Product = {
+  id: string;
+  name: string;
+  category: string;
+  price: number;
+  stock: number;
+  created_date: string;
+};
+
+export type DealStats = {
+  month: string;
+  deals: number;
+};
+
+export type LatestDeal = {
+  id: string;
+  title: string;
+  company: string;
+  value: string;
+  status: 'open' | 'closed' | 'pending';
+};
+
+export type LatestDealRaw = Omit<LatestDeal, 'value'> & {
+  value: number;
+};
+
+export type ActiveUser = {
+  id: string;
+  name: string;
+  email: string;
+  image_url: string;
+  last_login: string;
+  role: 'user' | 'admin';
 };

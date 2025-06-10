@@ -1,4 +1,5 @@
 import postgres from 'postgres';
+
 import {
   CustomerField,
   CustomersTableType,
@@ -6,6 +7,11 @@ import {
   InvoicesTable,
   LatestInvoiceRaw,
   Revenue,
+  Deal,
+  Product,
+  DealStats,
+  LatestDealRaw,
+  ActiveUser,
 } from './definitions';
 import { formatCurrency } from './utils';
 
@@ -214,5 +220,165 @@ export async function fetchFilteredCustomers(query: string) {
   } catch (err) {
     console.error('Database Error:', err);
     throw new Error('Failed to fetch customer table.');
+  }
+}
+
+// New functions for the refactored dashboard
+export async function fetchDashboardCardData() {
+  try {
+    // Mock data for demonstration - replace with actual database queries
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    
+    const totalDeals = 127;
+    const totalProducts = 89;
+    const totalUsers = 45;
+    const activeDeals = 23;
+    
+    return {
+      totalDeals,
+      totalProducts, 
+      totalUsers,
+      activeDeals,
+    };
+  } catch (error) {
+    console.error('Dashboard Error:', error);
+    throw new Error('Failed to fetch dashboard card data.');
+  }
+}
+
+export async function fetchDealStats() {
+  try {
+    // Mock data for demonstration - replace with actual database queries
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    
+    const dealStats: DealStats[] = [
+      { month: 'Jan', deals: 12 },
+      { month: 'Feb', deals: 18 },
+      { month: 'Mar', deals: 15 },
+      { month: 'Apr', deals: 22 },
+      { month: 'May', deals: 19 },
+      { month: 'Jun', deals: 25 },
+      { month: 'Jul', deals: 21 },
+      { month: 'Aug', deals: 28 },
+      { month: 'Sep', deals: 24 },
+      { month: 'Oct', deals: 32 },
+      { month: 'Nov', deals: 29 },
+      { month: 'Dec', deals: 35 },
+    ];
+    
+    return dealStats;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch deal statistics.');
+  }
+}
+
+export async function fetchLatestDeals() {
+  try {
+    // Mock data for demonstration - replace with actual database queries
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    
+    const latestDealsRaw: LatestDealRaw[] = [
+      { 
+        id: '1', 
+        title: 'Enterprise Software License', 
+        company: 'TechCorp Inc.', 
+        value: 125000, 
+        status: 'open' 
+      },
+      { 
+        id: '2', 
+        title: 'Cloud Migration Project', 
+        company: 'Global Systems Ltd.', 
+        value: 89000, 
+        status: 'pending' 
+      },
+      { 
+        id: '3', 
+        title: 'Marketing Campaign', 
+        company: 'Creative Agency', 
+        value: 45000, 
+        status: 'closed' 
+      },
+      { 
+        id: '4', 
+        title: 'Data Analytics Suite', 
+        company: 'Analytics Pro', 
+        value: 78000, 
+        status: 'open' 
+      },
+      { 
+        id: '5', 
+        title: 'Mobile App Development', 
+        company: 'StartupXYZ', 
+        value: 95000, 
+        status: 'pending' 
+      },
+    ];
+    
+    const latestDeals = latestDealsRaw.map((deal) => ({
+      ...deal,
+      value: formatCurrency(deal.value),
+    }));
+    
+    return latestDeals;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch latest deals.');
+  }
+}
+
+export async function fetchActiveUsers() {
+  try {
+    // Mock data for demonstration - replace with actual database queries
+    await new Promise((resolve) => setTimeout(resolve, 100));
+    
+    const activeUsers: ActiveUser[] = [
+      {
+        id: '1',
+        name: 'Sarah Johnson',
+        email: 'sarah.j@company.com',
+        image_url: '/customers/sarah-jones.png',
+        last_login: '2024-01-15 14:30:00',
+        role: 'admin'
+      },
+      {
+        id: '2', 
+        name: 'Michael Chen',
+        email: 'michael.c@company.com',
+        image_url: '/customers/michael-novotny.png',
+        last_login: '2024-01-15 13:45:00',
+        role: 'user'
+      },
+      {
+        id: '3',
+        name: 'Emily Davis',
+        email: 'emily.d@company.com', 
+        image_url: '/customers/amy-burns.png',
+        last_login: '2024-01-15 12:20:00',
+        role: 'user'
+      },
+      {
+        id: '4',
+        name: 'David Wilson',
+        email: 'david.w@company.com',
+        image_url: '/customers/balazs-orban.png',
+        last_login: '2024-01-15 11:15:00',
+        role: 'user'
+      },
+      {
+        id: '5',
+        name: 'Lisa Anderson',
+        email: 'lisa.a@company.com',
+        image_url: '/customers/lee-robinson.png', 
+        last_login: '2024-01-15 10:30:00',
+        role: 'admin'
+      },
+    ];
+    
+    return activeUsers;
+  } catch (error) {
+    console.error('Database Error:', error);
+    throw new Error('Failed to fetch active users.');
   }
 }

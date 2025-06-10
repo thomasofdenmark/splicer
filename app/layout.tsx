@@ -1,15 +1,18 @@
 import '@/app/ui/global.css';
-import { inter } from '@/app/ui/fonts';
+import { SessionProvider } from 'next-auth/react';
 import { Metadata } from 'next';
+import TopNavigation from '@/app/ui/top-navigation';
+
+import { body } from '@/app/ui/fonts';
 
 export const metadata: Metadata = {
   title: {
-    template: '%s | Acme Dashboard',
-    default: 'Acme Dashboard',
+    template: '%s | Splicer Dashboard',
+    default: 'Splicer Dashboard',
   },
-  description: 'The official Next.js Learn Dashboard built with App Router.',
-  metadataBase: new URL('https://next-learn-dashboard.vercel.sh'),
+  description: 'The best group buying platform',
 };
+
 export default function RootLayout({
   children,
 }: {
@@ -17,7 +20,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${inter.className} antialiased`}>{children}</body>
+      <body className={`${body.className} antialiased`}>
+        <SessionProvider>
+          <TopNavigation />
+          <main>
+            {children}
+          </main>
+        </SessionProvider>
+      </body>
     </html>
   );
 }
